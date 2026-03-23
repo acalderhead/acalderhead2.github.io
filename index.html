@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>acalderhead</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="loading">
+
+    <canvas id="neural-canvas"></canvas>
+
+    <nav>
+        <div class="nav-inner">
+            <span id="nav-brand" class="logo"></span>
+            <label class="theme-toggle">
+                <input type="checkbox" id="theme-trigger" onchange="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="identity" class="fade-in">
+            <header class="section-meta"><h2 id="label-identity"></h2><span id="coords"></span></header>
+            <div class="glass-block" id="bio-target"></div>
+        </section>
+
+        <section id="gallery" class="fade-in">
+            <header class="section-meta"><h2 id="label-gallery"></h2></header>
+            <div class="gallery-layout glass-block">
+                <nav id="gallery-menu"></nav>
+                <article id="gallery-viewer"></article>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/canvas.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
