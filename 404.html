@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>acalderhead // 404_NOT_FOUND</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        /* Specific overrides for the Error state */
+        .error-container {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .error-code {
+            font-family: var(--font-mono);
+            font-size: clamp(4rem, 15vw, 8rem);
+            color: var(--accent-p);
+            line-height: 1;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        .error-msg {
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 2rem;
+        }
+        .btn-return {
+            font-family: var(--font-mono);
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid var(--accent-s);
+            padding: 1rem 2rem;
+            transition: 0.3s;
+        }
+        .btn-return:hover {
+            background: var(--accent-s);
+            color: var(--bg);
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <canvas id="neural-canvas"></canvas>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-logo" id="nav-brand">acalderhead</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="error-container">
+            <div class="error-code">404</div>
+            <h1 class="error-msg">Signal Lost // Resource Not Found</h1>
+            <div class="glass-block" style="max-width: 500px; margin-bottom: 2rem;">
+                <p style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted);">
+                    The requested data packet is missing or has been moved to an encrypted directory. 
+                    Verify the URL coordinates and try again.
+                </p>
+            </div>
+            <a href="/" class="btn-return">RETURN_TO_BASE</a>
+        </div>
+    </main>
+
+    <script src="/assets/js/canvas.js"></script>
+    <script src="/assets/js/ui.js"></script>
+    
+    <script>
+        /**
+         * 404 HYDRATION
+         * Because this page might be triggered from a broken sub-directory,
+         * we use a simplified version of the app.js bootstrap.
+         */
+        async function bootstrap404() {
+            try {
+                const res = await fetch('/data/config.json');
+                const CONFIG = await res.json();
+                
+                const root = document.documentElement;
+                const theme = CONFIG.design.themes.dark;
+                const fonts = CONFIG.design.fonts;
+
+                // Apply Design Tokens
+                root.style.setProperty('--font-head', fonts.header);
+                root.style.setProperty('--font-body', fonts.body);
+                root.style.setProperty('--font-mono', fonts.mono);
+                Object.entries(theme).forEach(([key, val]) => {
+                    root.style.setProperty(`--${key.replace('_', '-')}`, val);
+                });
+
+                document.body.classList.remove('loading');
+            } catch (e) {
+                // Fail-safe: If fetch fails, the CSS variables in style.css handle it
+                document.body.classList.remove('loading');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', bootstrap404);
+    </script>
+</body>
+</html>
