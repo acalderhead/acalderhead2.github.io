@@ -1,0 +1,258 @@
+/* ================================================================
+   1. DESIGN TOKENS & SYSTEM VARIABLES
+   Purpose: These are the "knobs" of the UI. app.js will overwrite
+   these values at runtime based on your JSON configuration.
+================================================================ */
+:root {
+    /* Layout Constraints */
+    --container-max: 1100px;
+    --section-gap: 8rem;
+    --border-radius: 4px; /* Minimalist sharp corners */
+    
+    /* Typography Scales */
+    --fs-h1: clamp(2.5rem, 8vw, 4.5rem);
+    --fs-h2: 1.25rem;
+    --fs-body: 1rem;
+    --fs-mono: 0.85rem;
+
+    /* Fallback Colors (Hydrated by config.json) */
+    --bg: #0D0D0D;
+    --surface: #141414;
+    --text: #E0E0E0;
+    --text-muted: #888888;
+    --accent-p: #FF8C00;
+    --accent-s: #4682B4;
+    --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+/* ================================================================
+   2. RESET & BASE STYLES
+================================================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+canvas#neural-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* ================================================================
+   3. STRUCTURAL LAYOUT
+================================================================ */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: var(--section-gap) 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-family: var(--font-head);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-p);
+    text-transform: uppercase;
+}
+
+/* ================================================================
+   4. NAVIGATION (Zen Floating)
+================================================================ */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.5rem 0;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.2rem;
+}
+
+/* ================================================================
+   5. COMPONENTS (Glass Blocks & Interactive)
+================================================================ */
+.glass {
+    background: var(--surface);
+    border: 1px solid var(--glass-border);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Timeline/Chronicle specific styling */
+.record {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.record:last-child { border: none; }
+
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-head);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.record-date {
+    color: var(--accent-s);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+/* Gallery / Case Files */
+.gallery-body {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    min-height: 400px;
+}
+
+.gallery-index {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-right: 1px solid var(--glass-border);
+}
+
+.gallery-idx-item {
+    cursor: pointer;
+    padding: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    transition: 0.2s ease;
+    border-left: 2px solid transparent;
+}
+
+.gallery-idx-item:hover, .gallery-idx-item.active {
+    background: rgba(255,255,255,0.03);
+    border-left-color: var(--accent-p);
+    color: var(--accent-p);
+}
+
+/* ================================================================
+   6. ANIMATIONS & UTILITIES
+================================================================ */
+.fade-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.coord-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+/* Theme Switcher Toggle */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+
+.switch-track {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--glass-border);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.switch-thumb {
+    position: absolute;
+    height: 14px; width: 14px;
+    left: 4px; bottom: 4px;
+    background-color: var(--text);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .switch-track .switch-thumb {
+    transform: translateX(22px);
+    background-color: var(--accent-p);
+}
+
+/* ================================================================
+   7. RESPONSIVE ADAPTATIONS
+================================================================ */
+@media (max-width: 768px) {
+    .gallery-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-index {
+        flex-direction: row;
+        overflow-x: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 1rem;
+    }
+
+    :root {
+        --section-gap: 4rem;
+    }
+}
