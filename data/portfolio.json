@@ -35,36 +35,36 @@
 
     "skills": {
       "Data Architecture": [
-          "sql",
-          "python-ecosystem",
-          "r-tidyverse",
-          "database-design",
-          "etl-pipelines",
-          "data-wrangling",
-          "version-control-github",
-          "excel-advanced"
+        "sql",
+        "python-ecosystem",
+        "r-tidyverse",
+        "database-design",
+        "etl-pipelines",
+        "data-wrangling",
+        "version-control-github",
+        "excel-advanced"
       ],
       "Quantitative Analysis": [
-          "statistical-modeling",
-          "linear-programming",
-          "exploratory-data-analysis",
-          "data-mining",
-          "experimental-design"
+        "statistical-modeling",
+        "linear-programming",
+        "exploratory-data-analysis",
+        "data-mining",
+        "experimental-design"
       ],
       "Applied Intelligence": [
-          "nlp",
-          "topic-modeling-bertopic",
-          "prompt-engineering",
-          "systems-modeling",
-          "research-methods"
+        "nlp",
+        "topic-modeling-bertopic",
+        "prompt-engineering",
+        "systems-modeling",
+        "research-methods"
       ],
       "Strategic Synthesis": [
-          "analytical-storytelling",
-          "technical-synthesis",
-          "systems-refinement",
-          "strategic-insights",
-          "ui-ux-design",
-          "tableau"
+        "analytical-storytelling",
+        "technical-synthesis",
+        "systems-refinement",
+        "strategic-insights",
+        "ui-ux-design",
+        "tableau"
       ]
     },
 
@@ -87,7 +87,7 @@
         "text":   "The most common way people give up their power is by thinking they don't have any.",
         "author": "Alice Walker"
       },
-            {
+      {
         "text":   "Tactics is knowing what to do when there is something to do; strategy is knowing what to do when there is nothing to do.",
         "author": "Savielly Tartakower"
       }
