@@ -1,32 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Title and description are set at runtime by app.js from portfolio.json -->
-    <title>acalderhead.github.io</title>
-    <meta name="description" content="">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@100;400&display=swap" rel="stylesheet">
-
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-
-<!--
-    HEX CANVAS
-    Fixed behind all content. canvas.js drives hover + ripple.
-    pointer-events are set to auto so mouse events reach the canvas,
-    but page clicks still bubble up through the z-stack.
--->
-<canvas id="hex-canvas"></canvas>
-
-<!-- ================================================================
-     NAVIGATION
-================================================================ -->
 <nav>
     <div class="nav-inner">
         <a href="#about" class="nav-logo interactive">
@@ -51,7 +22,6 @@
 
 <!-- ================================================================
      MAIN CONTENT
-================================================================ -->
 <div class="container">
 
     <!-- ============================================================
@@ -171,7 +141,6 @@
 
 <!-- ================================================================
      FOOTER
-================================================================ -->
 <footer class="glass">
     <div class="footer-inner">
         <!-- Links injected by app.js from portfolio.json footer.links -->
@@ -192,10 +161,52 @@
        1. canvas.js  — defines HexCanvas (no DOM dependency beyond #hex-canvas)
        2. ui.js      — defines UI, binds window.toggleTheme etc.
        3. app.js     — async; fetches JSON, renders, then calls HexCanvas.init()
-================================================================ -->
 <script src="assets/js/canvas.js"></script>
 <script src="assets/js/ui.js"></script>
 <script src="assets/js/app.js"></script>
 
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>acalderhead</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="loading">
+
+    <canvas id="neural-canvas"></canvas>
+
+    <nav>
+        <div class="nav-inner">
+            <span id="nav-brand" class="logo"></span>
+            <label class="theme-toggle">
+                <input type="checkbox" id="theme-trigger" onchange="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="identity" class="fade-in">
+            <header class="section-meta"><h2 id="label-identity"></h2><span id="coords"></span></header>
+            <div class="glass-block" id="bio-target"></div>
+        </section>
+
+        <section id="gallery" class="fade-in">
+            <header class="section-meta"><h2 id="label-gallery"></h2></header>
+            <div class="gallery-layout glass-block">
+                <nav id="gallery-menu"></nav>
+                <article id="gallery-viewer"></article>
+            </div>
+        </section>
+    </main>
+
+    <script src="assets/js/canvas.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
