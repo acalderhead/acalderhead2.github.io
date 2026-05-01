@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title and description are set at runtime by app.js from portfolio.json -->
+    <title>acalderhead.github.io</title>
+    <meta name="description" content="">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@100;400&display=swap" rel="stylesheet">
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!--
+    HEX CANVAS
+    Fixed behind all content. canvas.js drives hover + ripple.
+    pointer-events are set to auto so mouse events reach the canvas,
+    but page clicks still bubble up through the z-stack.
+-->
+<canvas id="hex-canvas"></canvas>
+
+<!-- ================================================================
+     NAVIGATION
+================================================================ -->
+<nav>
+    <div class="nav-inner">
+        <a href="#about" class="nav-logo interactive">
+            acalderhead<span class="nav-logo-suffix">.github.io</span>
+        </a>
+        <div class="nav-links">
+            <a href="#about"   class="interactive">01. Identity</a>
+            <a href="#cv"      class="interactive">02. Log</a>
+            <a href="#gallery" class="interactive">03. Files</a>
+            <a href="#contact" class="interactive">04. Uplink</a>
+
+            <!-- Binary slider theme toggle -->
+            <label class="theme-switch interactive" title="Toggle theme">
+                <span class="sw-label sw-on" id="sw-dark">DARK</span>
+                <input type="checkbox" id="theme-check" onchange="toggleTheme()">
+                <span class="switch-track"><span class="switch-thumb"></span></span>
+                <span class="sw-label" id="sw-light">LIGHT</span>
+            </label>
+        </div>
+    </div>
+</nav>
+
+<!-- ================================================================
+     MAIN CONTENT
+================================================================ -->
+<div class="container">
+
+    <!-- ============================================================
+         SECTION 01 — IDENTITY
+    ============================================================ -->
+    <section id="about" class="fade-section">
+        <div class="section-header">
+            <h2>[ SECTION 01 // IDENTITY ]</h2>
+            <!-- Populated by app.js from identity.coordinates -->
+            <span class="coord-badge" id="coord-mount"></span>
+        </div>
+
+        <!-- Bio block -->
+        <div class="identity-block glass">
+            <h3>Data Detective · Agency Advocate · Solutions Strategist</h3>
+            <!-- Bio paragraphs injected by app.js -->
+            <div class="identity-bio" id="bio-mount"></div>
+            <!-- Stats tiles injected by app.js -->
+            <div class="stats-row" id="stats-mount"></div>
+        </div>
+
+        <!-- Skills block -->
+        <div class="skills-block glass">
+            <div class="skills-label">// Skills &amp; Stack</div>
+            <!-- Skill groups injected by app.js -->
+            <div class="skills-tags" id="skills-mount"></div>
+        </div>
+
+        <!-- Quotes rotator -->
+        <div class="quotes-container">
+            <div class="quotes-body glass">
+                <div class="quotes-block-header">// Guiding Principles</div>
+                <div class="quotes-grid">
+                    <!-- Number index injected by app.js -->
+                    <div class="quotes-index" id="quotes-index"></div>
+                    <!-- Active quote injected by app.js -->
+                    <div class="quote-file" id="quote-file" role="region" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 02 — CHRONICLE LOG
+    ============================================================ -->
+    <section id="cv" class="fade-section section-gap">
+        <div class="section-header">
+            <h2>[ SECTION 02 // CHRONICLE_LOG ]</h2>
+            <span class="coord-badge">Click a title to expand</span>
+        </div>
+        <!-- Timeline entries injected by app.js -->
+        <div class="timeline glass" id="chronicle-mount"
+             style="padding: 1.5rem 1.5rem 1.5rem 3rem;">
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 03 — CASE FILES (gallery)
+    ============================================================ -->
+    <section id="gallery" class="fade-section section-gap">
+        <div class="section-header">
+            <h2>[ SECTION 03 // CASE_FILES ]</h2>
+            <!-- Tab buttons — onclick calls window.switchGalleryMode() from app.js -->
+            <div class="gallery-mode-bar">
+                <button class="gallery-tab active interactive"
+                        onclick="switchGalleryMode('major')">MAJOR</button>
+                <button class="gallery-tab interactive"
+                        onclick="switchGalleryMode('minor')">MINOR</button>
+                <button class="gallery-tab interactive"
+                        onclick="switchGalleryMode('hypotheses')">HYPOTHESES</button>
+            </div>
+        </div>
+
+        <div class="gallery-body glass">
+            <!-- Index panel (left) -->
+            <nav class="gallery-index" id="gallery-index" aria-label="File index"></nav>
+            <!-- Detail panel (right) -->
+            <div class="gallery-file" id="gallery-file" role="region" aria-live="polite"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 04 — UPLINK (contact)
+    ============================================================ -->
+    <section id="contact" class="fade-section section-gap" style="margin-bottom: 2rem;">
+        <div class="section-header">
+            <h2>[ SECTION 04 // UPLINK ]</h2>
+        </div>
+
+        <!--
+            Note: not a <form> tag — GitHub Pages has no server.
+            Submit dispatches a mailto: link instead.
+            Labels/placeholders are set by app.js from portfolio.json.
+        -->
+        <div class="uplink-form glass" id="uplink-form">
+            <div class="form-line" id="email-line">
+                <!-- Label text set by app.js -->
+                <label for="from-email" id="from-label">SENDER:</label>
+                <input type="text" id="from-email"
+                       class="interactive" autocomplete="email"
+                       onblur="validateEmailField()">
+            </div>
+            <div class="form-error-msg" id="email-error" role="alert"></div>
+
+            <div class="form-line" style="border: none;">
+                <label for="data-msg" id="data-label">MESSAGE:</label>
+                <textarea id="data-msg" rows="4" class="interactive"></textarea>
+            </div>
+            <!-- Label text set by app.js -->
+            <button type="button" id="submit-btn"
+                    class="submit-btn interactive"
+                    onclick="handleUplink(event)">SEND_MESSAGE</button>
+        </div>
+    </section>
+
+</div><!-- /container -->
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer class="glass">
+    <div class="footer-inner">
+        <!-- Links injected by app.js from portfolio.json footer.links -->
+        <div class="footer-links" id="footer-links-mount"></div>
+
+        <div class="footer-bottom">
+            <span class="footer-tagline">DATA DETECTIVE / ADVOCATE / STRATEGIST</span>
+            <span class="footer-sep">·</span>
+            <!-- Built-with string injected by app.js -->
+            <span class="footer-built" id="footer-built"></span>
+        </div>
+    </div>
+</footer>
+
+<!-- ================================================================
+     JAVASCRIPT
+     Load order matters:
+       1. canvas.js  — defines HexCanvas (no DOM dependency beyond #hex-canvas)
+       2. ui.js      — defines UI, binds window.toggleTheme etc.
+       3. app.js     — async; fetches JSON, renders, then calls HexCanvas.init()
+================================================================ -->
+<script src="assets/js/canvas.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
