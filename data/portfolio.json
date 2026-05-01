@@ -1,0 +1,235 @@
+{
+  "_readme": {
+    "_purpose": "All user-facing text content for the portfolio. No colours, fonts, or layout rules; those live in config.json and style.css.",
+    "_editing": [
+      "Each top-level key maps to one <section> in index.html.",
+      "Add/remove items inside arrays; app.js re-renders automatically.",
+      "Dates use YYYY-MM or YYYY strings; never timestamps.",
+      "Set any optional URL to null if not yet available.",
+      "Tags are plain strings; match skills[] exactly for cross-highlighting."
+    ],
+    "_order": "Sections appear in the same order as the page: meta → identity → experience → projects → uplink → footer."
+  },
+
+  "meta": {
+    "_note": "Controls <title>, social sharing cards, and canonical URL. Update lastModified on every content edit.",
+    "siteTitle":    "acalderhead.github.io",
+    "description":  "Portfolio of Aidan Calderhead | Data Detective, Agency Advocate, and Solutions Strategist. Showcasing expertise in Python automation, mathematical modelling, and data-driven decision support.",
+    "canonicalUrl": "https://acalderhead.github.io",
+    "lastModified": "2026-03"
+  },
+
+  "identity": {
+    "_note": "The above-the-fold introduction block. stats → row of metric tiles. skills → flat tag list. quotes → auto-rotates every 10s.",
+
+    "headline":    "Aidan Calderhead | Data Detective · Agency Advocate · Solutions Strategist",
+    "bio":         "Welcome to my local environment.\n\nThis space is an extension of my passion for the underlying logic of our world. I believe that data, when grounded in the frameworks of mathematics and systems theory, is more than just a static resource: it is a catalyst for self-empowerment. In my practice, investigation and action operate in harmony rather than sequence: detective-like inquiry maps complex variables, a strategic vision engineers the path for data-driven growth, and an advocacy for agency ensures every logical step serves a human purpose.\n\nNo two systems are identical, and I don't believe in one-size-fits-all outputs. My approach is rooted in an attentiveness to detail and a drive to engineer unique solutions fit precisely to any project I get my hands on. By aligning intentional mathematical analysis directly with the human pulse behind the numbers, I ensure final results are not only functionally robust, but also purposefully built for the people they serve.\n\nI invite you to explore the tools, models, and projects within this space to see how this philosophy translates into practice.\n\nFind patterns. Empower choice. Engineer a way forward.",
+    "coordinates": "37.34°N / 79.20°W",
+
+    "stats": [
+      { "label": "YEARS_EXPERIENCE", "value": "02"   },
+      { "label": "PUBLICATIONS",     "value": "00"   },
+      { "label": "LOCATIONS_LIVED",  "value": "03"   },
+      { "label": "CHESS RAPID ELO",  "value": "1850" }
+    ],
+
+    "skills": {
+      "Data Architecture": [
+        "sql",
+        "python-ecosystem",
+        "r-tidyverse",
+        "database-design",
+        "etl-pipelines",
+        "data-wrangling",
+        "version-control-github",
+        "excel-advanced"
+      ],
+      "Quantitative Analysis": [
+        "statistical-modeling",
+        "linear-programming",
+        "exploratory-data-analysis",
+        "data-mining",
+        "experimental-design"
+      ],
+      "Applied Intelligence": [
+        "nlp",
+        "topic-modeling-bertopic",
+        "prompt-engineering",
+        "systems-modeling",
+        "research-methods"
+      ],
+      "Strategic Synthesis": [
+        "analytical-storytelling",
+        "technical-synthesis",
+        "systems-refinement",
+        "strategic-insights",
+        "ui-ux-design",
+        "tableau"
+      ]
+    },
+
+    "quotes": [
+      {
+        "text":   "The place God calls you to is the place where your deep gladness and the world's deep hunger meet.",
+        "author": "Frederick Buechner",
+        "source": "Wishful Thinking: A Seeker's ABC"
+      },
+      {
+        "text":   "Data is a love letter to the future.",
+        "author": "Unknown"
+      },
+      {
+        "text":   "The world is full of obvious things which nobody by any chance ever observes.",
+        "author": "Arthur Conan Doyle",
+        "source": "The Hound of the Baskervilles"
+      },
+      {
+        "text":   "The most common way people give up their power is by thinking they don't have any.",
+        "author": "Alice Walker"
+      },
+      {
+        "text":   "Tactics is knowing what to do when there is something to do; strategy is knowing what to do when there is nothing to do.",
+        "author": "Savielly Tartakower"
+      }
+    ]
+  },
+
+  "chronicle": {
+    "_note": "Work and research history. `isCurrent` drives the filled dot and auto-expand. `dateEnd` null renders as PRES. `highlights` are short bullet strings shown in the expanded card.",
+    "entries": [
+      {
+        "id":        "chr_001",
+        "role":      "Senior Data Strategist",
+        "dateStart": "2025-01",
+        "dateEnd":   null,
+        "isCurrent": true,
+        "tags":      ["NLP", "BERTopic", "Python"],
+        "highlights": [
+          "Focused on NLP extraction and topic modelling using BERTopic.",
+          "Automated complex metadata tagging for high-volume content libraries.",
+          "Lead contributor to internal decision-support tooling."
+        ]
+      },
+      {
+        "id":        "chr_002",
+        "role":      "Optimisation Researcher",
+        "dateStart": "2022-06",
+        "dateEnd":   "2025-01",
+        "isCurrent": false,
+        "tags":      ["Linear Programming", "Mathematics", "Research"],
+        "highlights": [
+          "Deployed binary linear programming models to solve NP-hard course timetabling challenges at scale.",
+          "Published findings in three peer-reviewed venues.",
+          "Collaborated with faculty stakeholders to define constraint sets and success metrics."
+        ]
+      }
+    ]
+  },
+
+  "caseFiles": {
+    "_note": "Three tabs: major, minor, hypotheses. repoUrl null hides the GitHub link. status: live | archived | wip | null. desc is hidden in the minor tab — controlled by app.js, not here.",
+
+    "major": [
+      {
+        "id":      "RECORD_001",
+        "title":   "NLP Pipeline Engine",
+        "repoUrl": "https://github.com/acalderhead",
+        "status":  "live",
+        "tags":    ["Python", "BERTopic", "ETL Pipelines", "NLP"],
+        "desc":    "Full-stack extraction tool parsing YouTube metadata and generating thematic clusters via BERTopic. Reduced manual tagging overhead by 80% and enabled downstream topic analysis at scale."
+      },
+      {
+        "id":      "RECORD_002",
+        "title":   "LP Timetable Solver",
+        "repoUrl": "https://github.com/acalderhead",
+        "status":  "archived",
+        "tags":    ["Linear Programming", "Python", "Decision Modelling"],
+        "desc":    "Binary Linear Programming model solving NP-hard course scheduling. Reduced faculty conflicts by 40% while satisfying all hard constraints across 200+ course sections."
+      }
+    ],
+
+    "minor": [
+      {
+        "id":      "TOOL_001",
+        "title":   "ETL Automation Scripts",
+        "repoUrl": "https://github.com/acalderhead",
+        "status":  "wip",
+        "tags":    ["Python", "ETL Pipelines"],
+        "desc":    "Collection of reusable ETL scripts for flattening nested JSON payloads and loading structured records into SQL databases."
+      },
+      {
+        "id":      "TOOL_002",
+        "title":   "Tableau Dashboard Templates",
+        "repoUrl": null,
+        "status":  null,
+        "tags":    ["Tableau", "Data Visualisation"],
+        "desc":    "A library of Tableau workbook templates with parameterised data sources and standardised colour systems for rapid deployment."
+      }
+    ],
+
+    "hypotheses": [
+      {
+        "id":      "INT_01",
+        "title":   "Generative Audio Synth",
+        "repoUrl": "https://github.com/acalderhead",
+        "status":  "wip",
+        "tags":    ["Python", "NLP"],
+        "desc":    "Exploring generative models for real-time procedural audio and adaptive music systems driven by live data streams."
+      },
+      {
+        "id":      "INT_02",
+        "title":   "UI Prompt Engineering",
+        "repoUrl": "https://github.com/acalderhead",
+        "status":  "wip",
+        "tags":    ["Decision Modelling", "NLP"],
+        "desc":    "Systematic prompt design patterns for predictable, controllable LLM-driven interface behaviours across interaction contexts."
+      },
+      {
+        "id":      "INT_03",
+        "title":   "Wholesome Data Scraping",
+        "repoUrl": "https://github.com/acalderhead",
+        "status":  "wip",
+        "tags":    ["Python", "ETL Pipelines", "Statistics"],
+        "desc":    "Ethical pipelines for public dataset collection — built-in anonymisation, provenance tracking, and consent frameworks."
+      }
+    ]
+  },
+
+  "uplink": {
+    "_note": "Static copy for the contact form. Recipient is the single source of truth for the mailto target; used by both the form handler and the footer email link.",
+    "recipient":   "aidan.calderhead@gmail.com",
+    "fromLabel":   "SENDER:",
+    "fromHint":    "your@email.com",
+    "dataLabel":   "MESSAGE:",
+    "dataHint":    "We come in peace...",
+    "submitLabel": "SEND_MESSAGE"
+  },
+
+  "footer": {
+    "_note": "Social and contact links. `icon` is a unicode glyph. `rel` null omits the rel attribute (safe for mailto links).",
+    "builtWith": "BUILT IN COLLABORATION WITH CLAUDE SONNET 4.6 & GOOGLE GEMINI 3",
+    "links": [
+      {
+        "id":    "github",
+        "icon":  "⌥",
+        "label": "GITHUB",
+        "url":   "https://github.com/acalderhead",
+        "rel":   "noopener"
+      },
+      {
+        "id":    "linkedin",
+        "icon":  "◈",
+        "label": "LINKEDIN",
+        "url":   "https://linkedin.com/in/acalderhead",
+        "rel":   "noopener"
+      },
+      {
+        "id":    "email",
+        "icon":  "✉",
+        "label": "aidan.calderhead@gmail.com",
+        "url":   "mailto:aidan.calderhead@gmail.com",
+        "rel":   null
+      }
+    ]
+  }
+}
